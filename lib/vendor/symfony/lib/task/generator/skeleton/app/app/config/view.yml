@@ -1,0 +1,18 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+#  http_metas:
+#    content-type: text/html
+  
+  metas:
+    charset:     utf-8~
+    http-equiv:  'IE=edge~*X-UA-Compatible'
+    viewport:    'width=device-width,initial-scale=1'
+    description: 'Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.'
+    author:      'Mark Otto, Jacob Thornton, and Bootstrap contributors'
+
+  stylesheets: [ bootstrap: { bootstrap : true }, docs: { bootstrap : true } ]
+  javascripts: [ jquery, bootstrap, docs.min.js, ie10-viewport-bug-workaround ]
+  has_layout:  true
+  layout:      layout

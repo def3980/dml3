@@ -1,0 +1,8 @@
+# Es necesario quitar del layout por defecto algunas librerias que no son 
+# necesarias en esta plantilla.
+# http://librosweb.es/symfony_1_4/capitulo_7/configuracion_de_la_vista.html
+
+# Sera afectado solo a la parte de ejemplos en la opcion Getting Starter
+indexSuccess:
+    stylesheets: [bootstrap-theme, docs, pygments-manni]
+#    javascripts: [-docs.min.js: {}]

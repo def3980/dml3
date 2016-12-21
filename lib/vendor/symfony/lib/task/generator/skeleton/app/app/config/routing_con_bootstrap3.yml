@@ -1,0 +1,37 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# + ----------------------------------------------------------- rutas bootstrap3
+bootstrap3_index:
+  url:   /bootstrap3
+  param: { module: bootstrap3, action: index }
+bootstrap3_getting_started:
+  url:   /bootstrap3/getting-started
+  param: { module: bootstrap3, action: gettingStarted }
+bootstrap3_css:
+  url:   /bootstrap3/css
+  param: { module: bootstrap3, action: css }
+bootstrap3_components:
+  url:   /bootstrap3/components
+  param: { module: bootstrap3, action: components }
+bootstrap3_javascript:
+  url:   /bootstrap3/javascript
+  param: { module: bootstrap3, action: javascript }
+bootstrap3_customize:
+  url:   /bootstrap3/customize
+  param: { module: bootstrap3, action: customize }
+# + -------------------------------------------------------------------------- +
+
+# Reglas por defecto
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# Reglas genericas
+# Por favor, quitarlas al agregar nuevas reglas especificas
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
