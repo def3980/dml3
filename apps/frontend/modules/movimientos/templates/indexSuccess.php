@@ -14,50 +14,6 @@
             footer {
               padding: 30px 0;
             }
-
-            /*
-             * Off Canvas
-             * -------------------------------------------------- */
-            @media screen and (max-width: 767px) {
-                .row-offcanvas {
-                    position: relative;
-                    -webkit-transition: all .25s ease-out;
-                    -o-transition: all .25s ease-out;
-                    transition: all .25s ease-out;
-                }
-
-                .row-offcanvas-right {
-                    right: 0;
-                }
-
-                .row-offcanvas-left {
-                    left: 0;
-                }
-
-                .row-offcanvas-right
-                .sidebar-offcanvas {
-                    right: -50%; /* 6 columns */
-                }
-
-                .row-offcanvas-left
-                .sidebar-offcanvas {
-                    left: -50%; /* 6 columns */
-                }
-
-                .row-offcanvas-right.active {
-                    right: 50%; /* 6 columns */
-                }
-
-                .row-offcanvas-left.active {
-                    left: 50%; /* 6 columns */
-                }
-
-                .sidebar-offcanvas {
-                    position: absolute;
-                    top: 0;
-                    width: 50%; /* 6 columns */
-                }
-            }
             .bs-example:after {
                 position: absolute;
                 top: 15px;
@@ -73,8 +29,8 @@
 <?php end_slot() ?>
 <?php include_partial('navbar', array('ruta' => '@homepage')) ?>
         <div class="container">
-            <div class="row row-offcanvas row-offcanvas-right">
-                <div class="col-xs-12 col-sm-10">
+            <div class="row/* row-offcanvas row-offcanvas-right*/">
+                <div class="col-xs-12/* col-sm-10*/">
                     <p class="pull-right visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
@@ -165,7 +121,7 @@
                         </pre>
                     </figure>
                 </div><!--/.col-xs-12.col-sm-10-->
-                <?php include_partial('sidebar') ?>
+                <?php //include_partial('sidebar') ?>
             </div><!--/row-->
             <?php include_partial('footer') ?>
         </div><!--/.container-->
