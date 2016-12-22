@@ -1,0 +1,46 @@
+{
+  "status": "200",
+  "message": "successful operation",
+  "data": [
+    {
+      "date": "2016-12-20",
+      "subject": "Menestras del negro",
+      "type": "D",
+      "document": "78542698",
+      "amount": 6.48,
+      "balance": 3.52
+    },
+    {
+      "date": "2016-12-20",
+      "subject": "Panaderia la UNION",
+      "type": "D",
+      "document": "154875",
+      "amount": 0.52,
+      "balance": 3
+    },
+    {
+      "date": "2016-12-20",
+      "subject": "DEPOSITO",
+      "type": "C",
+      "document": "8754869",
+      "amount": 100,
+      "balance": 103
+    },
+    {
+      "date": "2016-12-20",
+      "subject": "DEPOSITO",
+      "type": "C",
+      "document": "8754869",
+      "amount": 100,
+      "balance": 103
+    },
+    {
+      "date": "2016-12-20",
+      "subject": "TRANSFERENCIA INTERNET",
+      "type": "C",
+      "document": "8754869",
+      "amount": 296,
+      "balance": 399
+    }
+  ]
+}

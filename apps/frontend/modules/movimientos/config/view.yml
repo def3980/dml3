@@ -4,5 +4,5 @@
 
 # Sera afectado solo a la parte de ejemplos en la opcion Getting Starter
 indexSuccess:
-    stylesheets: [docs, pygments-manni]
+    stylesheets: [-bootstrap-theme, docs, pygments-manni]
 #    javascripts: [-docs.min.js: {}]

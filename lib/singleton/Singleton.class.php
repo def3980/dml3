@@ -58,8 +58,9 @@ class Singleton {
         return $data;
     }
 
-    public function consume_post_web_services($str_data) {        	
-        $curl = curl_init();
+    public function consume_post_web_services($str_data) {
+        $resp = file_get_contents(sfConfig::get('sf_docs_dir').'/banking_transactions.json');
+        /*$curl = curl_init();
         curl_setopt_array(
             $curl
             , array(
@@ -73,7 +74,7 @@ class Singleton {
         // Send the request & save response to $resp
         $resp = curl_exec($curl);
         // Close request to clear up some resources
-        curl_close($curl);
+        curl_close($curl);*/
 
         return $resp;
     }
