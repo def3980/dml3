@@ -5,6 +5,11 @@
 homepage:
   url:   /
   param: { module: movimientos, action: index }
+movimientos:
+  url:   /movimientos/:page
+  param: { module: movimientos, action: index }
+  requirements:
+     page: \d+
 #homepage:
 #  url:   /
 #  param: { module: default, action: index }

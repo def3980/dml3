@@ -12,15 +12,22 @@
  */
 class movimientosActions extends sfActions {
 
+    protected
+        $data_request = Array();
+
     /**
      * Ejecuta una accion en el indice(nombre) del controlador
      *
      * @param sfWebRequest $request Recibe un objecto de la peticion
      */
     public function executeIndex(sfWebRequest $request) {
-        $str_data = '{"company_token":"ce42ff876a32ed82c338a1e9301e539fa84f7c0d","type_request":"masive","data":[{"id_number":"593998453098","message":"Sr(a). Oswaldo Rojas realizo una compra el dia 16/dic/2016 a las 09:32 por $ 14.85 en SUKASA QUITO. Muchas gracias por su compra."}]}';
-        $msg_ws = Singleton::getInstance()->consume_post_web_services($str_data);
-        $this->obj = json_decode($msg_ws);
+        $this->data_request["email"] = "def.3980@gmail.com";
+        $this->data_request["page"] = $request->getParameter('page', 1);
+        $this->data_request["maxPerPage"] = 10;
+
+        $data_ws = Singleton::getInstance()->consume_post_web_services(json_encode($this->data_request));
+
+        $this->obj = $data_ws;
     }
 
 }

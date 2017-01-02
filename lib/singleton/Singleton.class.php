@@ -17,7 +17,9 @@
  */
 class Singleton {
 
-    private static $_singleton = NULL;
+    private static
+        $_singleton = NULL
+        , $_urlBase = "http://localhost/III_WAP2_DmlServices/api/";
 
     /**
      * Retorna una instacia de esta clase
@@ -59,23 +61,29 @@ class Singleton {
     }
 
     public function consume_post_web_services($str_data) {
-        $resp = file_get_contents(sfConfig::get('sf_docs_dir').'/banking_transactions.json');
-        /*$curl = curl_init();
+        //$resp = file_get_contents(sfConfig::get('sf_docs_dir').'/banking_transactions.json');
+        $curl = curl_init();
         curl_setopt_array(
             $curl
             , array(
                 CURLOPT_HTTPHEADER => array("Content-type: application/json", "Accept: application/json")
-                , CURLOPT_POSTFIELDS => $str_data
-                , CURLOPT_RETURNTRANSFER => 1
-                , CURLOPT_URL => 'http://localhost:3001/III_WAP2_SukasaSMS/api/serviceSMSMasive'
-                , CURLOPT_POST => 1
+            , CURLOPT_POSTFIELDS => $str_data
+            , CURLOPT_RETURNTRANSFER => 1
+            , CURLOPT_URL => self::$_urlBase . 'bankingTransactions'
+            , CURLOPT_POST => 1
             )
         );
         // Send the request & save response to $resp
         $resp = curl_exec($curl);
         // Close request to clear up some resources
-        curl_close($curl);*/
+        curl_close($curl);
 
-        return $resp;
+        $obj = json_decode($resp);
+
+        if ($obj->status == 200) {
+            $obj = $obj->wa2;
+        }
+
+        return $obj;
     }
 }

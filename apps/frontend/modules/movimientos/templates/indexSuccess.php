@@ -25,6 +25,12 @@
                 letter-spacing: 1px;
                 content: "Movimientos Bancarios";
             }
+            .tbl-movimientos thead th {
+                text-align: center;
+            }
+            .banking_accounts {
+                margin: 8px 0;
+            }
         </style>
 <?php end_slot() ?>
 <?php include_partial('navbar', array('ruta' => '@homepage')) ?>
@@ -45,7 +51,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" href="#">Brand</a>
+                                    <a class="navbar-brand" href="<?php echo url_for("@homepage") ?>">Home</a>
                                 </div>
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,26 +74,22 @@
                                     <form class="navbar-form navbar-left">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Search">
+                                            <button type="submit" class="btn btn-default">Submit</button>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit</button>
                                     </form>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a href="#">Link</a></li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <select class="banking_accounts selectpicker"<?php if (count($obj->bank_accounts) > 3): ?> data-live-search="true"<?php endif; ?>>
+<?php foreach ($obj->bank_accounts as $kog => $vog): ?>
+                                        <optgroup label="<?=$vog->bank_name?>">
+<?php   foreach ($vog->numbers_accounts as $k => $v): ?>
+                                            <option value="<?=$v->id?>"><?=$v->number_account?></option>
+<?php   endforeach; ?>
+                                        </optgroup>
+<?php endforeach; ?>
+                                    </select>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
                         </nav>
-                        <table class="table table-striped table-bordered table-condensed table-hover responsive-utilities">                            
+                        <table class="tbl-movimientos table table-striped table-bordered table-hover responsive-utilities">
                             <caption>Optional table caption.</caption>
                             <thead>
                                 <tr>
@@ -100,18 +102,65 @@
                                 </tr>
                             </thead>
                             <tbody>
-<?php foreach ($obj->data as $k => $v): ?>
+<?php foreach ($obj->pager->data_pager as $k => $v): ?>
                                 <tr>
-                                    <td><?=$v->date?></td>
-                                    <td><?=$v->subject?></td>
-                                    <td><?=$v->type?></td>
-                                    <td><?=$v->document?></td>
-                                    <td><?=$v->amount?></td>
-                                    <td><?=$v->balance?></td>
+                                    <td><?=$v->mo_fecha?></td>
+                                    <td><?=$v->mo_concepto?></td>
+                                    <td><?=$v->mo_tipo?></td>
+                                    <td><?=$v->mo_documento?></td>
+                                    <td><?=$v->mo_monto?></td>
+                                    <td><?=$v->mo_saldo?></td>
                                 </tr>
 <?php endforeach; ?>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+<?php if ($obj->pager->have_to_paginate): ?>
+                                <li<?php if ($obj->pager->get_page == $obj->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=1") ?>" aria-label="Init">
+                                        <span aria-hidden="true">&larr;</span>
+                                    </a>
+                                </li>
+                                <li<?php if ($obj->pager->get_page == $obj->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_previous_page) ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+<?php   foreach ($obj->pager->get_links as $v): ?>
+<?php       if ($obj->pager->get_page == $v): ?>
+                                <li class="active"><a href="javascript:void(0)"><?=$v?></a></li>
+<?php       else: ?>
+                                <li><a href="<?php echo url_for("@movimientos?page=".$v) ?>"><?=$v?></a></li>
+<?php       endif; ?>
+<?php   endforeach; ?>
+                                <li<?php if ($obj->pager->get_page == $obj->pager->get_next_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_next_page) ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li<?php if ($obj->pager->get_page == $obj->pager->get_last_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_last_page) ?>" aria-label="Last">
+                                        <span aria-hidden="true">&rarr;</span>
+                                    </a>
+                                </li>
+<?php else: ?>
+                                <li class="disabled">
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="disabled"><span aria-hidden="true">&laquo;</span></li>
+                                <li class="disabled">1</li>
+                                <li class="disabled"><span aria-hidden="true">&raquo;</span></li>
+                                <li class="disabled">
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+<?php endif; ?>
+                            </ul>
+                        </nav>
                     </div>
                     <figure class="highlight">
                         <pre>

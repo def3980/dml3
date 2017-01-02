@@ -1,1 +1,1 @@
-    log contiene o guarda los archivos de registro
+    cache contiene o guarda los archivos en cache
