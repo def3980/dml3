@@ -60,17 +60,17 @@ class Singleton {
         return $data;
     }
 
-    public function consume_post_web_services($str_data) {
+    public function consume_post_web_services($str_data, $svc_name) {
         //$resp = file_get_contents(sfConfig::get('sf_docs_dir').'/banking_transactions.json');
         $curl = curl_init();
         curl_setopt_array(
             $curl
             , array(
                 CURLOPT_HTTPHEADER => array("Content-type: application/json", "Accept: application/json")
-            , CURLOPT_POSTFIELDS => $str_data
-            , CURLOPT_RETURNTRANSFER => 1
-            , CURLOPT_URL => self::$_urlBase . 'bankingTransactions'
-            , CURLOPT_POST => 1
+                , CURLOPT_POSTFIELDS => $str_data
+                , CURLOPT_RETURNTRANSFER => 1
+                , CURLOPT_URL => self::$_urlBase.$svc_name
+                , CURLOPT_POST => 1
             )
         );
         // Send the request & save response to $resp

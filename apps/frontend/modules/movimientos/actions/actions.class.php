@@ -22,12 +22,17 @@ class movimientosActions extends sfActions {
      */
     public function executeIndex(sfWebRequest $request) {
         $this->data_request["email"] = "def.3980@gmail.com";
+
+        $ba_ws = Singleton::getInstance()->consume_post_web_services(json_encode($this->data_request), "bankAccounts");
+
+        $this->obj_ba = $ba_ws;
+
         $this->data_request["page"] = $request->getParameter('page', 1);
         $this->data_request["maxPerPage"] = 10;
 
-        $data_ws = Singleton::getInstance()->consume_post_web_services(json_encode($this->data_request));
+        $bt_ws = Singleton::getInstance()->consume_post_web_services(json_encode($this->data_request), "bankingTransactions");
 
-        $this->obj = $data_ws;
+        $this->obj_bt = $bt_ws;
     }
 
 }

@@ -77,11 +77,11 @@
                                             <button type="submit" class="btn btn-default">Submit</button>
                                         </div>
                                     </form>
-                                    <select class="banking_accounts selectpicker"<?php if (count($obj->bank_accounts) > 3): ?> data-live-search="true"<?php endif; ?>>
-<?php foreach ($obj->bank_accounts as $kog => $vog): ?>
-                                        <optgroup label="<?=$vog->bank_name?>">
+                                    <select class="banking_accounts selectpicker"<?php if (count($obj_ba) > 3): ?> data-live-search="true"<?php endif; ?>>
+<?php foreach ($obj_ba as $kog => $vog): ?>
+                                        <optgroup label="<?php echo $vog->bank_name ?>">
 <?php   foreach ($vog->numbers_accounts as $k => $v): ?>
-                                            <option value="<?=$v->id?>"><?=$v->number_account?></option>
+                                            <option><?=$v?></option>
 <?php   endforeach; ?>
                                         </optgroup>
 <?php endforeach; ?>
@@ -102,7 +102,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-<?php foreach ($obj->pager->data_pager as $k => $v): ?>
+<?php foreach ($obj_bt->pager->data_pager as $k => $v): ?>
                                 <tr>
                                     <td><?=$v->mo_fecha?></td>
                                     <td><?=$v->mo_concepto?></td>
@@ -116,31 +116,31 @@
                         </table>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
-<?php if ($obj->pager->have_to_paginate): ?>
-                                <li<?php if ($obj->pager->get_page == $obj->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
+<?php if ($obj_bt->pager->have_to_paginate): ?>
+                                <li<?php if ($obj_bt->pager->get_page == $obj_bt->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
                                     <a href="<?php echo url_for("@movimientos?page=1") ?>" aria-label="Init">
                                         <span aria-hidden="true">&larr;</span>
                                     </a>
                                 </li>
-                                <li<?php if ($obj->pager->get_page == $obj->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
-                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_previous_page) ?>" aria-label="Previous">
+                                <li<?php if ($obj_bt->pager->get_page == $obj_bt->pager->get_previous_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj_bt->pager->get_previous_page) ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-<?php   foreach ($obj->pager->get_links as $v): ?>
-<?php       if ($obj->pager->get_page == $v): ?>
+<?php   foreach ($obj_bt->pager->get_links as $v): ?>
+<?php       if ($obj_bt->pager->get_page == $v): ?>
                                 <li class="active"><a href="javascript:void(0)"><?=$v?></a></li>
 <?php       else: ?>
                                 <li><a href="<?php echo url_for("@movimientos?page=".$v) ?>"><?=$v?></a></li>
 <?php       endif; ?>
 <?php   endforeach; ?>
-                                <li<?php if ($obj->pager->get_page == $obj->pager->get_next_page): ?> class="disabled"<?php endif; ?>>
-                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_next_page) ?>" aria-label="Next">
+                                <li<?php if ($obj_bt->pager->get_page == $obj_bt->pager->get_next_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj_bt->pager->get_next_page) ?>" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
-                                <li<?php if ($obj->pager->get_page == $obj->pager->get_last_page): ?> class="disabled"<?php endif; ?>>
-                                    <a href="<?php echo url_for("@movimientos?page=".$obj->pager->get_last_page) ?>" aria-label="Last">
+                                <li<?php if ($obj_bt->pager->get_page == $obj_bt->pager->get_last_page): ?> class="disabled"<?php endif; ?>>
+                                    <a href="<?php echo url_for("@movimientos?page=".$obj_bt->pager->get_last_page) ?>" aria-label="Last">
                                         <span aria-hidden="true">&rarr;</span>
                                     </a>
                                 </li>
